@@ -7,8 +7,8 @@ import { LayoutComponent } from './layout/layout.component';
 import { HomeComponent } from './home/home.component';
 import { DetailsComponent } from './details/details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { AlertComponent } from 'src/app/_component/alert/alert.component';
 
 
 
@@ -17,7 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LayoutComponent,
     HomeComponent,
     DetailsComponent,
-  
+    AlertComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
- 
+    NgApexchartsModule
   
   ],
   schemas: [

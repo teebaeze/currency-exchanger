@@ -7,6 +7,26 @@ import { RouteData } from 'src/app/models/routedata.model';
 import { AlertService } from 'src/app/services/alert.service';
 import { ExchangeService } from 'src/app/services/exchange.service';
 import { environment } from 'src/environments/environment';
+import {
+  ChartComponent,
+  ApexAxisChartSeries,
+  ApexChart,
+  ApexXAxis,
+  ApexDataLabels,
+  ApexTitleSubtitle,
+  ApexStroke,
+  ApexGrid
+} from "ng-apexcharts";
+
+export type ChartOptions = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  xaxis: ApexXAxis;
+  dataLabels: ApexDataLabels;
+  grid: ApexGrid;
+  stroke: ApexStroke;
+  title: ApexTitleSubtitle;
+};
 
 
 @Component({
