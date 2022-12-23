@@ -66,7 +66,7 @@ switchSymbol(){
     to: this.form.value.from
   });
   this.onSubmit()
-  console.log(this.form.value,'switched');
+ 
   
 }
   // to get select options
@@ -148,8 +148,7 @@ switchSymbol(){
   }
 
   gotoDetails() {
-    console.log(this.Symbols);
-    console.log(this.form.value.from, 'from');
+   
 
     this.router.navigateByUrl('exchange/details', {
       state: {
@@ -181,9 +180,9 @@ switchSymbol(){
         )
         .pipe(
           map((t) => {
-            console.log('got here');
+          
             let rates = t.rates;
-            console.log(t, 'rate here');
+       
 
             for (let dates in rates) {
               if (rates.hasOwnProperty(dates)) {
@@ -208,7 +207,7 @@ switchSymbol(){
       .subscribe((res) => {
         let innere = res;
       });
-    console.log(newArray, 'uuu');
+  
     this.int2 = newArray;
   }
   getSymbolName() {

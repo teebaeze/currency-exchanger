@@ -59,9 +59,9 @@ export class DetailsComponent implements OnInit {
   dates: any[] = [
     '2022-01-31',
     '2022-02-28',
-    // "2022-03-31",
-    // "2022-04-30",
-    // "2022-05-31","2022-06-30","2022-07-31","2022-08-31","2022-09-30","2022-01-31","2022-01-31","2022-01-31"
+    "2022-03-31",
+    "2022-04-30",
+    "2022-05-31","2022-06-30","2022-07-31","2022-08-31","2022-09-30","2022-01-31","2022-01-31","2022-01-31"
   ];
 
   constructor( private http: HttpClient, private fb:FormBuilder,private exchangeService:ExchangeService, private router:Router,private route:ActivatedRoute, private alertService : AlertService) { }
@@ -104,7 +104,7 @@ export class DetailsComponent implements OnInit {
   }
   getSymbolName() {
     this.SymbolName = this.Symbols[this.form.value.from];
-    console.log(this.Symbols,this.SymbolName,'symbolname');
+   
     
   }
   getSymbols(){
@@ -119,7 +119,7 @@ export class DetailsComponent implements OnInit {
     
   }
   chartOptionsFunction(){
-    console.log(this.int2,'integer2');
+
     
     if(!this.dataChange){
     this.data1 = this.routedata.ChartData[0]?.data
@@ -133,7 +133,7 @@ export class DetailsComponent implements OnInit {
     this.data2 = this.int2[1]?.data
     this.name1 =this.int2[0]?.name
       this.name2 =this.int2[0]?.name
-      console.log( this.int2,this.data1, this.data2, this.name1,this.name2);
+    
       
     }
     this.chartOptions = {
@@ -244,9 +244,9 @@ getChartData() {
       )
       .pipe(
         map((t) => {
-          console.log('got here');
+       
           let rates = t.rates;
-          console.log(t, 'rate here');
+        
           for (let dates in rates) {
             if (rates.hasOwnProperty(dates)) {
               let currencyValue = rates[dates];
@@ -271,7 +271,7 @@ getChartData() {
       let innere = res;
       this.chartOptionsFunction()
     });
-  console.log(newArray, 'uuu');
+ 
   this.int2 = newArray;
   // this.data1 = newArray[0]?.data
   // this.data2 = newArray[1]?.data

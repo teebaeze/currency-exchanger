@@ -19,8 +19,7 @@ export class ExchangeService {
     )
   }
   ConvertSymbols(params:{to:string, from:string, amount:number,  }):Observable<any>{
-    console.log(params);
-    // 
+ 
     return this.http.get<Convert>(`${environment.apiUrl}/convert`,{ params: params })
     .pipe(
       tap(data => data
@@ -32,7 +31,6 @@ export class ExchangeService {
      base: base,
      symbols:symbols
    }
-    // console.log(params);
     
     return this.http.get<Convert>(`${environment.apiUrl}/latest`,{ params: params })
     .pipe(
