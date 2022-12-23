@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-
+    this.getSymbols()
     this.form = this.fb.group({
       amount: [1, [Validators.required, Validators.pattern('^[0-9]*$')]],
       from: ['EUR', Validators.required],
@@ -58,6 +58,16 @@ export class HomeComponent implements OnInit {
 
 get f() {
   return this.form.controls;
+}
+
+switchSymbol(){
+  this.form.patchValue({
+    from: this.form.value.to,
+    to: this.form.value.from
+  });
+  this.onSubmit()
+  console.log(this.form.value,'switched');
+  
 }
   // to get select options
   getSymbols(){
@@ -97,7 +107,34 @@ get f() {
 
     this.loading = true;
   }
-
+  geteurusd(){
+    this.form.patchValue({
+      amount:1,
+      from: 'EUR',
+      to: 'USD'
+    });
+    this.onSubmit()
+    
+    setTimeout(()=>{                         
+      this.gotoDetails()
+     
+ }, 5000); 
+    
+  }
+  geteurgbp(){
+    this.form.patchValue({
+      amount:1,
+      from: 'EUR',
+      to: 'GBP'
+    });
+    this.onSubmit()
+    
+    setTimeout(()=>{                         
+      this.gotoDetails()
+     
+ }, 5000); 
+    
+  }
   // get latest rates to populate top 9 cards
   getLatestRates() {
     let top_eight = 'GBP,JPY,EUR,CHF,CAD,ZAR,NZD,USD,NGN';
@@ -119,7 +156,7 @@ get f() {
         form: this.form.value,
         result: this.result,
         ChartData: this.int2,
-        // symbolName: this.SymbolName,
+        symbolName: this.SymbolName,
       },
     });
   }

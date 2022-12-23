@@ -51,7 +51,11 @@ export class DetailsComponent implements OnInit {
   to!:string
   data1!:any
   data2!: any
+  name1!: string
+  name2!: string
   int2!: any;
+  SymbolName!:string
+  dataChange:boolean=false
   dates: any[] = [
     '2022-01-31',
     '2022-02-28',
@@ -66,7 +70,7 @@ export class DetailsComponent implements OnInit {
     this.getSymbols()
 
     this.routedata = history.state;
-    console.log('route data', this.data);
+    
    
     this.form = this.fb.group({
       amount: [this.routedata.form?.amount, [Validators.required,Validators.pattern("^[0-9]*$")]],
@@ -94,8 +98,14 @@ export class DetailsComponent implements OnInit {
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
-    
+  
     this.chartOptionsFunction()
+    
+  }
+  getSymbolName() {
+    this.SymbolName = this.Symbols[this.form.value.from];
+    console.log(this.Symbols,this.SymbolName,'symbolname');
+    
   }
   getSymbols(){
  
@@ -109,16 +119,31 @@ export class DetailsComponent implements OnInit {
     
   }
   chartOptionsFunction(){
+    console.log(this.int2,'integer2');
+    
+    if(!this.dataChange){
     this.data1 = this.routedata.ChartData[0]?.data
     this.data2 = this.routedata.ChartData[1]?.data
+     this.name1 = this.routedata.ChartData[0].name
+     this.name2 = this.routedata.ChartData[1].name
+  }
+
+    else{
+      this.data1 = this.int2[0]?.data
+    this.data2 = this.int2[1]?.data
+    this.name1 =this.int2[0]?.name
+      this.name2 =this.int2[0]?.name
+      console.log( this.int2,this.data1, this.data2, this.name1,this.name2);
+      
+    }
     this.chartOptions = {
       series: [
         {
-          name: this.routedata.ChartData[0].name,
+          name: this.name1,
           data:this.data1 ,
         },
         {
-          name: this.routedata.ChartData[1].name,
+          name: this.name2,
   
           data: this.data2,
         }
@@ -167,6 +192,7 @@ export class DetailsComponent implements OnInit {
   }
   get f() { return this.form.controls; }
   onSubmit() {
+    this.dataChange= true;
     this.exchangeService.ConvertSymbols(this.form.value)
     .subscribe(
 
@@ -243,12 +269,12 @@ getChartData() {
     .pipe(catchError((err) => of(err)))
     .subscribe((res) => {
       let innere = res;
+      this.chartOptionsFunction()
     });
   console.log(newArray, 'uuu');
   this.int2 = newArray;
-  this.data1 = newArray[0]?.data
-  this.data2 = newArray[1]?.data
-  this.chartOptionsFunction()
+  // this.data1 = newArray[0]?.data
+  // this.data2 = newArray[1]?.data
 }
 initChart(){
   
